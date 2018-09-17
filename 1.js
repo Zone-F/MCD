@@ -1,32 +1,40 @@
-	var name=prompt("请输入邮箱")
-	console.log('邮箱账号为: '+ name)
-    var oText= document.getElementsByName("email_addr");
-        oText[0].value=name;
-        var a = document.getElementsByClassName("btn_s02")
-        a[0].click()
-     var harf=prompt("请输入注册页面")
-     alert(typeof harf)
-       window.location.href= harf
-        document.getElementById("userid").value="zone9844"
-        document.getElementById("passwd").value="123456789"
-        document.getElementById("passwd_con").value="123456789"
-        document.getElementById("agree").checked=true
-        document.getElementById("join_button").click()
-		
-		
-		
-		    var oText= document.getElementsByName("email_addr");
-        oText[0].value=name;
-        var a = document.getElementsByClassName("btn_s02")
-        a[0].click(function(){
-            var harf=prompt("请输入注册页面")
-            window.location.href= harf
-            document.getElementById("userid").value="zone9844"
-            document.getElementById("passwd").value="123456789"
-            document.getElementById("passwd_con").value="123456789"
-            document.getElementById("agree").checked=true
-            document.getElementById("join_button").click(function(){alert("注册成功")})
-        })
-		ocument.getElementsByClassName("btn_submit")[0].click
-		
-		https://jp.mnet.com/mobileweb/member/login.m
+const express = require('express')
+const app = express()
+
+var currentEmail = ''
+var adr = ''
+var user = ''
+var userNum = 29;
+
+app.get('/saveemail', function userIdHandler(req, res) {
+    var a = req.query.email;
+    currentEmail = a
+    res.type('application/json');
+    res.jsonp({ new: true });
+});
+app.get('/saveadr', function userIdHandler(req, res) {
+    var a = req.query.harf;
+    adr = a
+});
+
+app.get('/getemail', function userIdHandler(req, res) {
+    res.type('application/json');
+    res.jsonp({ email: currentEmail });
+});
+app.get('/getadr', function userIdHandler(req, res) {
+    res.type('application/json');
+    res.jsonp({ harf: adr });
+});
+app.get('/getuser', function userIdHandler(req, res) {
+    user= 'ZZQ4' + userNum
+    userNum +=1
+    console.log('获得新账号'+user)
+    res.type('application/json');
+    res.jsonp({ user: user });
+});
+app.get('/user', function userIdHandler(req, res) {
+    res.type('application/json');
+    res.jsonp({ user: user });
+});
+app.listen(3000, () => console.log('Example app listening on port 3000!'))
+
